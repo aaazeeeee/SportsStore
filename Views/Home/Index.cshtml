@@ -1,0 +1,33 @@
+﻿@model ProductsListViewModel
+
+@foreach (var p in Model.Products ?? Enumerable.Empty<Product>())
+{
+    <style>
+        .box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+
+    <div class="d-flex box justify-content-between">
+        <div>
+            <h3 class="mb-4">Product Name: @p.Name</h3>
+            <p>Description: @p.Description</p>
+        </div>
+        <div>
+            <p type="button" class="btn btn-primary rounded-pill">Product Price: @p.Price.ToString("c")</p>
+        </div>
+    </div>
+}
+
+<div page-model="@Model.PagingInfo" page-action="Index"
+     page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     page-url-category="@Model.CurrentCategory"
+     class="btn-group pull-right m-1">
+</div>
